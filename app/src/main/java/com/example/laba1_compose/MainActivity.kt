@@ -16,6 +16,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.layoutId
 import androidx.core.view.WindowCompat
+import com.example.laba1_compose.getters.getComments
 import com.example.laba1_compose.ui.theme.LABA1_composeTheme
 import com.example.laba1_compose.ui.theme.MainColor
 
@@ -37,6 +38,7 @@ private fun decoupledConstraints(): ConstraintSet {
         val descriptionFragmentRef = createRefFor("DescriptionFragment")
         val gameGalleryRowRef = createRefFor("GameGalleryRow")
         val ratingFragmentRow = createRefFor("RatingFragment")
+        val commentSectionRef = createRefFor("CommentSection")
         constrain(headerImageRef) {
             top.linkTo(parent.top)
         }
@@ -58,6 +60,9 @@ private fun decoupledConstraints(): ConstraintSet {
         constrain(ratingFragmentRow) {
             top.linkTo(gameGalleryRowRef.bottom, margin = 10.dp)
         }
+        constrain(commentSectionRef) {
+            top.linkTo(ratingFragmentRow.bottom, margin = 10.dp)
+        }
     }
 }
 
@@ -72,46 +77,61 @@ fun MainScreen() {
                 .fillMaxSize()
                 .background(color = MainColor))
         }
-        LazyColumn() {
-            item{
-                ConstraintLayout(
-                    constraintSet = decoupledConstraints()
-                ) {
-                    Box(
-                        modifier = Modifier.layoutId("HeaderImage")
+        LazyColumn(
+            verticalArrangement = Arrangement.Center
+        ) {
+            item {
+                BoxWithConstraints() {
+
+                    ConstraintLayout(
+                        constraintSet = decoupledConstraints()
                     ) {
-                        HeaderImageFragment()
-                    }
-                    Box(
-                        modifier = Modifier.layoutId("IconLabel")
-                    ) {
-                        IconLabel()
-                    }
-                    Box(
-                        modifier = Modifier.layoutId("DescriptionFragment")
-                    ) {
-                        DescriptionFragment()
-                    }
-                    Box(
-                        modifier = Modifier.layoutId("GameGalleryRow")
-                    ) {
-                        GalleryFragment(
-                            list_of_image_painters = mapOf(
-                                "e1" to painterResource(R.drawable.example1),
-                                "e2" to painterResource(R.drawable.example2),
-                                "e3" to painterResource(R.drawable.example2)
+                        Box(
+                            modifier = Modifier.layoutId("HeaderImage")
+                        ) {
+                            HeaderImageFragment()
+                        }
+                        Box(
+                            modifier = Modifier.layoutId("IconLabel")
+                        ) {
+                            IconLabel()
+                        }
+                        Box(
+                            modifier = Modifier.layoutId("DescriptionFragment")
+                        ) {
+                            DescriptionFragment()
+                        }
+                        Box(
+                            modifier = Modifier.layoutId("GameGalleryRow")
+                        ) {
+                            GalleryFragment(
+                                list_of_image_painters = mapOf(
+                                    "e1" to painterResource(R.drawable.example1),
+                                    "e2" to painterResource(R.drawable.example2),
+                                    "e3" to painterResource(R.drawable.example2)
+                                )
                             )
-                        )
-                    }
-                    Box(
-                        modifier = Modifier.layoutId("RatingFragment")
-                    ) {
-                        RatingFragment(
-                            rating = 4.9
-                        )
+                        }
+                        Box(
+                            modifier = Modifier.layoutId("RatingFragment")
+                        ) {
+                            RatingFragment(
+                                rating = 4.9
+                            )
+                        }
                     }
                 }
-
+            }
+            items(getComments().size){
+                i -> CommentFragment(
+                    image = getComments()[i].image,
+                    name = getComments()[i].name,
+                    date = getComments()[i].date,
+                    text = getComments()[i].text
+                )
+            }
+            item{
+                DownloadButton()
             }
         }
     }

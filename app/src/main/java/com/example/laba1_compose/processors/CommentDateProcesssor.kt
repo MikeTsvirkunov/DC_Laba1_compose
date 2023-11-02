@@ -4,6 +4,7 @@ import java.util.Date
 
 fun commentDateProcessor(
     date: Date
-){
-    return
+): String
+{
+    return "February 10, 2020"
 }
