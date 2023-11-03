@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.util.Date
@@ -63,7 +65,8 @@ fun CommentFragment(
             Text(
                 text = text,
                 color = TextColor,
-                fontSize = 15.sp
+                fontSize = 15.sp,
+                fontFamily = FontFamily(Font(R.font.natosan_thin)),
             )
         }
     }

@@ -2,6 +2,7 @@ package com.example.laba1_compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -14,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
@@ -24,10 +26,14 @@ fun DownloadButton(){
             backgroundColor = Color(244, 209, 68)
         ),
         modifier=Modifier
+            .height(140.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
-            .padding(start = 40.dp, end = 40.dp, bottom = 80.dp)
+            .padding(start = 30.dp, end = 30.dp, bottom = 80.dp)
+            .clip(RoundedCornerShape(15.dp))
     ) {
-        Text(text = "Загрузить")
+        Text(
+            text = "Install",
+            fontSize = 20.sp
+        )
     }
 }

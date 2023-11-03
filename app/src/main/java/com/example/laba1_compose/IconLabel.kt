@@ -15,10 +15,15 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import com.example.laba1_compose.getters.getDownloadCount
+import com.example.laba1_compose.getters.getRating
+import com.example.laba1_compose.ui.theme.ReviewCounterColor
 import com.example.laba1_compose.ui.theme.TextColor
 
 @Composable
@@ -40,14 +45,24 @@ fun IconLabel(){
                     painter = painterResource(R.drawable.logo),
                     contentDescription = "Game logo",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(125.dp)
+                    modifier = Modifier.size(150.dp)
                 )
+                Column() {
+                    Text(
+                        text = "DoTA 2",
+                        color = TextColor,
+                        fontFamily = FontFamily(Font(R.font.natosan_bold)),
+                        fontSize = 20.sp,
+                        modifier = Modifier
+                            .padding(2.dp)
+                    )
+                    EasyStarsLabel(getRating())
+                }
                 Text(
-                    text = "DoTA 2",
-                    color = TextColor,
-                    fontSize = 30.sp,
-                    modifier = Modifier
-                        .padding(2.dp)
+                    text = getDownloadCount(),
+                    color=ReviewCounterColor,
+                    fontFamily = FontFamily(Font(R.font.natosan_thin)),
+                    fontSize = 15.sp,
                 )
             }
         }

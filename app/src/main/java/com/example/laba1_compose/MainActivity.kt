@@ -17,6 +17,7 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.layoutId
 import androidx.core.view.WindowCompat
 import com.example.laba1_compose.getters.getComments
+import com.example.laba1_compose.getters.getRating
 import com.example.laba1_compose.ui.theme.LABA1_composeTheme
 import com.example.laba1_compose.ui.theme.MainColor
 
@@ -116,7 +117,7 @@ fun MainScreen() {
                             modifier = Modifier.layoutId("RatingFragment")
                         ) {
                             RatingFragment(
-                                rating = 4.9
+                                rating = getRating()
                             )
                         }
                     }

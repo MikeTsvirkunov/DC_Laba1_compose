@@ -21,7 +21,7 @@ fun DescriptionFragment(){
             " defending their own.",
         color = TextColor,
         modifier = Modifier.padding(25.dp, 0.dp, 25.dp, 0.dp),
-        fontFamily = FontFamily(Font(R.font.bai_jamjuree)),
+        fontFamily = FontFamily(Font(R.font.natosan_thin)),
         fontSize = 12.sp
     )
 }

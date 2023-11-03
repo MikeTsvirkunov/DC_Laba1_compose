@@ -1,4 +1,5 @@
 package com.example.laba1_compose.getters
 
-class GetRating {
+fun getRating(): Double{
+    return 4.9
 }
