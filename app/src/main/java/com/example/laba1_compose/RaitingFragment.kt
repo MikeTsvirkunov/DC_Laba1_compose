@@ -42,14 +42,15 @@ fun RatingFragment(
                 )
                 Column(
                     horizontalAlignment = Alignment.Start,
-                    modifier = Modifier.padding(10.dp)
+                    modifier = Modifier.padding(start = 20.dp, top = 20.dp)
                 ) {
                     EasyStarsLabel(getRating())
+                    Spacer(modifier = Modifier.height(5.dp))
                     Text(
                         fontFamily = FontFamily(Font(R.font.natosan_thin)),
                         text = getDownloadCount() + " Reviews",
                         color= ReviewCounterColor,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
                     )
                 }
             }

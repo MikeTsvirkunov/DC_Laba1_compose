@@ -63,6 +63,7 @@ fun IconLabel(){
                     color=ReviewCounterColor,
                     fontFamily = FontFamily(Font(R.font.natosan_thin)),
                     fontSize = 15.sp,
+                    modifier = Modifier.padding(top = 38.dp, start = 10.dp)
                 )
             }
         }
