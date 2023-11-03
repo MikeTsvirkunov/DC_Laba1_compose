@@ -20,7 +20,7 @@ fun DescriptionFragment(){
             "the opposing team known as the \"Ancient\", whilst" +
             " defending their own.",
         color = TextColor,
-        modifier = Modifier.padding(25.dp, 0.dp, 25.dp, 0.dp),
+        modifier = Modifier.padding(20.dp, 0.dp, 0.dp, 0.dp),
         fontFamily = FontFamily(Font(R.font.natosan_thin)),
         fontSize = 12.sp
     )

@@ -20,9 +20,7 @@ import com.example.laba1_compose.ui.theme.TextColor
 fun RatingFragment(
     rating: Double,
 ){
-    Box(
-        modifier = Modifier.padding(start = 35.dp)
-    ) {
+    Box() {
         Column() {
             Text(
                 "Review & Ratings",

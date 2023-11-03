@@ -12,7 +12,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,6 +31,12 @@ fun DownloadButton(){
             .height(140.dp)
             .fillMaxWidth()
             .padding(start = 30.dp, end = 30.dp, bottom = 80.dp)
+            .shadow(
+                elevation = 15.dp,
+                clip = false,
+                shape = RoundedCornerShape(40.dp),
+                spotColor = Color(244, 209, 68)
+            )
             .clip(RoundedCornerShape(15.dp))
     ) {
         Text(

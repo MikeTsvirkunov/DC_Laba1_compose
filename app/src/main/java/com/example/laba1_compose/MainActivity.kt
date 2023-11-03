@@ -18,6 +18,7 @@ import androidx.constraintlayout.compose.layoutId
 import androidx.core.view.WindowCompat
 import com.example.laba1_compose.getters.getComments
 import com.example.laba1_compose.getters.getRating
+import com.example.laba1_compose.getters.getTags
 import com.example.laba1_compose.ui.theme.LABA1_composeTheme
 import com.example.laba1_compose.ui.theme.MainColor
 
@@ -36,6 +37,7 @@ private fun decoupledConstraints(): ConstraintSet {
     return ConstraintSet {
         val iconLabelRef = createRefFor("IconLabel")
         val headerImageRef = createRefFor("HeaderImage")
+        val tagsRowRef = createRefFor("TagsRow")
         val descriptionFragmentRef = createRefFor("DescriptionFragment")
         val gameGalleryRowRef = createRefFor("GameGalleryRow")
         val ratingFragmentRow = createRefFor("RatingFragment")
@@ -48,11 +50,30 @@ private fun decoupledConstraints(): ConstraintSet {
                 headerImageRef.bottom,
                 margin = (-40).dp
             )
+            start.linkTo(
+                parent.start,
+                margin = 25.dp
+            )
+        }
+        constrain(tagsRowRef){
+            top.linkTo(iconLabelRef.bottom)
+            start.linkTo(
+                parent.start,
+                margin = 25.dp
+            )
         }
         constrain(descriptionFragmentRef) {
             top.linkTo(
-                iconLabelRef.bottom,
+                tagsRowRef.bottom,
                 margin = (10).dp
+            )
+            start.linkTo(
+                parent.start,
+                margin = 25.dp
+            )
+            end.linkTo(
+                parent.end,
+                margin = 25.dp
             )
         }
         constrain(gameGalleryRowRef) {
@@ -60,9 +81,17 @@ private fun decoupledConstraints(): ConstraintSet {
         }
         constrain(ratingFragmentRow) {
             top.linkTo(gameGalleryRowRef.bottom, margin = 10.dp)
+            start.linkTo(
+                parent.start,
+                margin = 25.dp
+            )
         }
         constrain(commentSectionRef) {
             top.linkTo(ratingFragmentRow.bottom, margin = 10.dp)
+            start.linkTo(
+                parent.start,
+                margin = 25.dp
+            )
         }
     }
 }
@@ -95,10 +124,17 @@ fun MainScreen() {
                         Box(
                             modifier = Modifier.layoutId("IconLabel")
                         ) {
-                            IconLabel()
+                            IconLabel2()
                         }
                         Box(
-                            modifier = Modifier.layoutId("DescriptionFragment")
+                            modifier = Modifier
+                                .layoutId("TagsRow")
+                        ) {
+                            TagsRowFragment(getTags())
+                        }
+                        Box(
+                            modifier = Modifier
+                                .layoutId("DescriptionFragment")
                         ) {
                             DescriptionFragment()
                         }
