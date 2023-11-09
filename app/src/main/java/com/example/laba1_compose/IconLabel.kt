@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -77,10 +78,12 @@ fun IconLabel(){
 
 private fun logoLabelConstraints(): ConstraintSet {
     return ConstraintSet {
-        val gameLogoRef = createRefFor("GameLogo")
-        val nameRef = createRefFor("Name")
-        val starsRef = createRefFor("Stars")
-        val reviewCounterRef = createRefFor("ReviewCounter")
+        val (
+            gameLogoRef,
+            nameRef,
+            starsRef,
+            reviewCounterRef
+        ) = createRefsFor("GameLogo", "Name", "Stars", "ReviewCounter")
         constrain(gameLogoRef) {
             start.linkTo(parent.start)
             top.linkTo(parent.top, 10.dp)
@@ -113,7 +116,7 @@ fun IconLabel2(){
         ) {
             Image(
                 painter = painterResource(R.drawable.logo_clear),
-                contentDescription = "GameLogo",
+                contentDescription = stringResource(R.string.game_logo),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(90.dp)

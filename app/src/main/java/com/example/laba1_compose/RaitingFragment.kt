@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -23,7 +24,7 @@ fun RatingFragment(
     Box() {
         Column() {
             Text(
-                "Review & Ratings",
+                stringResource(R.string.review_n_rating),
                 color = TextColor,
                 fontWeight = FontWeight(900),
                 fontFamily = FontFamily(Font(R.font.natosan_extrabold))
@@ -46,7 +47,7 @@ fun RatingFragment(
                     Spacer(modifier = Modifier.height(5.dp))
                     Text(
                         fontFamily = FontFamily(Font(R.font.natosan_thin)),
-                        text = getDownloadCount() + " Reviews",
+                        text = getDownloadCount() + " " + stringResource(R.string.review),
                         color= ReviewCounterColor,
                         fontSize = 15.sp,
                     )

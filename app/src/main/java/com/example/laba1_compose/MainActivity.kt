@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +23,8 @@ import com.example.laba1_compose.getters.getRating
 import com.example.laba1_compose.getters.getTags
 import com.example.laba1_compose.ui.theme.LABA1_composeTheme
 import com.example.laba1_compose.ui.theme.MainColor
+import com.example.laba1_compose.decoupledConstraints
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 class MainActivity : ComponentActivity() {
@@ -33,75 +37,17 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private fun decoupledConstraints(): ConstraintSet {
-    return ConstraintSet {
-        val iconLabelRef = createRefFor("IconLabel")
-        val headerImageRef = createRefFor("HeaderImage")
-        val tagsRowRef = createRefFor("TagsRow")
-        val descriptionFragmentRef = createRefFor("DescriptionFragment")
-        val gameGalleryRowRef = createRefFor("GameGalleryRow")
-        val ratingFragmentRow = createRefFor("RatingFragment")
-        val commentSectionRef = createRefFor("CommentSection")
-        constrain(headerImageRef) {
-            top.linkTo(parent.top)
-        }
-        constrain(iconLabelRef) {
-            top.linkTo(
-                headerImageRef.bottom,
-                margin = (-40).dp
-            )
-            start.linkTo(
-                parent.start,
-                margin = 25.dp
-            )
-        }
-        constrain(tagsRowRef){
-            top.linkTo(iconLabelRef.bottom)
-            start.linkTo(
-                parent.start,
-                margin = 25.dp
-            )
-        }
-        constrain(descriptionFragmentRef) {
-            top.linkTo(
-                tagsRowRef.bottom,
-                margin = (10).dp
-            )
-            start.linkTo(
-                parent.start,
-                margin = 25.dp
-            )
-            end.linkTo(
-                parent.end,
-                margin = 25.dp
-            )
-        }
-        constrain(gameGalleryRowRef) {
-            top.linkTo(descriptionFragmentRef.bottom, margin = 10.dp)
-        }
-        constrain(ratingFragmentRow) {
-            top.linkTo(gameGalleryRowRef.bottom, margin = 10.dp)
-            start.linkTo(
-                parent.start,
-                margin = 25.dp
-            )
-        }
-        constrain(commentSectionRef) {
-            top.linkTo(ratingFragmentRow.bottom, margin = 10.dp)
-            start.linkTo(
-                parent.start,
-                margin = 25.dp
-            )
-        }
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 fun MainScreen() {
     LABA1_composeTheme {
+        val sysUIContr = rememberSystemUiController()
+        SideEffect {
+            sysUIContr.setStatusBarColor(color = Color.Transparent, darkIcons = false)
+        }
         Surface(
-            color = MainColor
+            color = MainColor,
+            modifier = Modifier.fillMaxSize()
         ){
             Spacer(modifier = Modifier
                 .fillMaxSize()
@@ -168,7 +114,7 @@ fun MainScreen() {
                 )
             }
             item{
-                DownloadButton()
+                DownloadButton();
             }
         }
     }

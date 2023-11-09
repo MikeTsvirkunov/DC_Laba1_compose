@@ -1,6 +1,9 @@
 package com.example.laba1_compose
 
-import androidx.compose.foundation.background
+import android.content.Context
+import android.widget.Toast
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -10,11 +13,15 @@ import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,12 +29,19 @@ import androidx.compose.ui.unit.sp
 @Preview
 @Composable
 fun DownloadButton(){
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val color = if (isPressed) Color(244, 209, 68) else Color(244, 209, 68, 200)
+    val context = LocalContext.current
     Button(
-        onClick = {},
+        onClick = {
+            Toast.makeText(context, "TODO", Toast.LENGTH_SHORT).show()
+        },
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color(244, 209, 68)
+            backgroundColor = color,
         ),
-        modifier=Modifier
+        modifier= Modifier
             .height(140.dp)
             .fillMaxWidth()
             .padding(start = 30.dp, end = 30.dp, bottom = 80.dp)
@@ -40,7 +54,7 @@ fun DownloadButton(){
             .clip(RoundedCornerShape(15.dp))
     ) {
         Text(
-            text = "Install",
+            text = stringResource(R.string.install_btn_text),
             fontSize = 20.sp
         )
     }
