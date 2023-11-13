@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LABA1_compose</string>
+    <string name="install_btn_text">Install</string>
+    <string name="review">Review</string>
+    <string name="review_n_rating">Review &amp; Ratings</string>
+    <string name="game_label">Game label</string>
+    <string name="game_logo">Game logo</string>
 </resources>

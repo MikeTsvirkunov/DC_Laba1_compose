@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,10 +24,10 @@ import androidx.constraintlayout.compose.layoutId
 val images_style = Modifier
     .height(125.dp)
     .width(275.dp)
-    .clip(
-        RoundedCornerShape(40.dp)
-    )
     .padding(horizontal = 25.dp)
+    .clip(
+        RoundedCornerShape(20.dp)
+    )
 
 @Composable
 fun GalleryFragment(
@@ -56,7 +57,7 @@ fun GalleryFragment(
             Image(
                 painter = list_of_image_painters[list_of_image_painters.keys.toList()[i]]!!,
                 contentDescription = list_of_image_painters.keys.toList()[i],
-                contentScale = ContentScale.FillBounds,
+                contentScale = ContentScale.Crop,
                 modifier = images_style
             )
         }

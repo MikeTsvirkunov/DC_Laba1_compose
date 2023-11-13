@@ -1,14 +1,16 @@
 package com.example.laba1_compose
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -33,5 +35,44 @@ fun StarsLabel(){
             path,
             Color.Blue
         )
+    }
+}
+
+@Composable
+fun EasyStarsLabel(
+    rating: Double
+){
+    LazyRow(
+        userScrollEnabled = false,
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
+    ){
+        items(5){
+            i ->
+            if (rating - i > 1)
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.star
+                    ),
+                    contentDescription = "star_i",
+                    modifier = Modifier
+                        .size(15.dp)
+                )
+            else if (rating - i < 1)
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.half_star
+                    ),
+                    contentDescription = "h_star_i",
+                    modifier = Modifier.size(15.dp)
+                )
+            else
+                Image(
+                    painter = painterResource(
+                        id = R.drawable.g_star
+                    ),
+                    contentDescription = "star_i",
+                    modifier = Modifier.size(15.dp)
+                )
+        }
     }
 }

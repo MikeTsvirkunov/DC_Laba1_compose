@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 fun HeaderImageFragment(){
     Image(
         painter = painterResource(R.drawable.main_label),
-        contentDescription = "Game label",
+        contentDescription =R.string.game_label.toString(),
         contentScale = ContentScale.FillWidth,
         modifier = Modifier
             .height(250.dp)
